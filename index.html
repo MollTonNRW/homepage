@@ -302,49 +302,6 @@ h2 em { font-style:normal; color:var(--accent); }
 .qr { display:inline-block; padding:1.4rem; background:rgba(255,255,255,.93); border-radius:8px; box-shadow:0 0 40px rgba(79,195,247,.12); }
 .qr img { width:138px; display:block; }
 
-/* AGB — subtle, bottom of page */
-.agb-section {
-  border-top:1px solid rgba(79,195,247,.08);
-  background:rgba(4,8,16,.6);
-}
-.agb-wrap {
-  max-width:900px; margin:0 auto; padding:3rem 3rem 4rem;
-}
-.agb-heading {
-  font-family:'DM Mono',monospace;
-  font-size:.6rem; letter-spacing:.35em;
-  color:rgba(79,195,247,.28); text-transform:uppercase;
-  margin-bottom:1.2rem;
-}
-.agb-list { display:flex; flex-direction:column; gap:1px; background:rgba(79,195,247,.07); }
-.agb-item { background:rgba(5,11,22,.7); overflow:hidden; }
-.agb-btn {
-  width:100%; background:none; border:none;
-  padding:.9rem 1.6rem; display:flex; align-items:center; gap:1rem;
-  text-align:left; transition:background .2s;
-}
-.agb-btn:hover { background:rgba(79,195,247,.03); }
-.agb-para {
-  font-family:'DM Mono',monospace; font-size:.58rem;
-  color:rgba(79,195,247,.3); letter-spacing:.18em; flex-shrink:0; width:32px;
-}
-.agb-title {
-  font-family:'Barlow Condensed',sans-serif; font-size:.9rem;
-  font-weight:500; text-transform:uppercase; letter-spacing:.06em;
-  color:rgba(180,215,240,.35); flex:1;
-}
-.agb-ico { font-size:1rem; color:rgba(79,195,247,.25); transition:transform .3s, color .2s; flex-shrink:0; }
-.agb-item.open .agb-ico { transform:rotate(45deg); color:rgba(79,195,247,.5); }
-.agb-body { max-height:0; overflow:hidden; transition:max-height .4s ease, padding .3s; padding:0 1.6rem; }
-.agb-item.open .agb-body { max-height:800px; padding:0 1.6rem 1.4rem; }
-.agb-body p, .agb-body li {
-  font-size:.8rem; font-weight:300; line-height:1.85;
-  color:rgba(180,215,240,.3); margin-bottom:.65rem;
-}
-.agb-body ul { padding-left:1rem; list-style:none; }
-.agb-body ul li::before { content:'—'; margin-right:.5rem; color:rgba(79,195,247,.3); }
-.agb-body strong { color:rgba(180,215,240,.45); font-weight:500; }
-
 /* FOOTER */
 footer {
   background:rgba(4,8,18,.92);
@@ -386,7 +343,6 @@ hr { border:none; border-top:1px solid var(--border); margin:0 3rem; }
   .price-grid { grid-template-columns:1fr; }
   .contact-grid { grid-template-columns:1fr; gap:3rem; padding:4rem 1.5rem; }
   .foot-grid { grid-template-columns:1fr 1fr; gap:2rem; }
-  .agb-wrap { padding:2.5rem 1.5rem 3rem; }
   .strip-inner { flex-direction:column; }
   .strip-item { border-right:none; border-bottom:1px solid var(--border); text-align:left; padding:.7rem 0; }
   .strip-item:last-child { border-bottom:none; }
@@ -416,7 +372,7 @@ hr { border:none; border-top:1px solid var(--border); margin:0 3rem; }
     <li><a href="#pricing">Preise</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact">Kontakt</a></li>
-    <li><a href="#agb">AGB</a></li>
+    <li><a href="agb.html">AGB</a></li>
   </ul>
   <a href="#contact" class="nav-btn">[Anfragen]</a>
 </nav>
@@ -652,144 +608,6 @@ hr { border:none; border-top:1px solid var(--border); margin:0 3rem; }
              onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://paypal.me/MollTonNRW'">
       </div>
     </a>
-  </div>
-</div>
-
-<!-- AGB — subtle, at the bottom -->
-<div id="agb" class="agb-section">
-  <div class="agb-wrap">
-    <p class="agb-heading">Allgemeine Gesch&auml;ftsbedingungen &mdash; MollTonCreative &mdash; Stand: Februar 2026</p>
-    <div class="agb-list">
-
-      <div class="agb-item">
-        <button class="agb-btn" onclick="tog(this,'agb-item')">
-          <span class="agb-para">&sect;&nbsp;1</span>
-          <span class="agb-title">Geltungsbereich</span>
-          <span class="agb-ico">+</span>
-        </button>
-        <div class="agb-body">
-          <p>Diese Allgemeinen Gesch&auml;ftsbedingungen (AGB) gelten f&uuml;r alle Vertr&auml;ge, die zwischen MollTonCreative (nachfolgend &bdquo;Auftragnehmer&ldquo;) und dem Auftraggeber &uuml;ber die Erbringung von 3D-Druckdienstleistungen abgeschlossen werden.</p>
-          <p>Abweichende Bedingungen des Auftraggebers werden nicht anerkannt, es sei denn, der Auftragnehmer stimmt deren Geltung ausdr&uuml;cklich schriftlich zu.</p>
-        </div>
-      </div>
-
-      <div class="agb-item">
-        <button class="agb-btn" onclick="tog(this,'agb-item')">
-          <span class="agb-para">&sect;&nbsp;2</span>
-          <span class="agb-title">Vertragsschluss</span>
-          <span class="agb-ico">+</span>
-        </button>
-        <div class="agb-body">
-          <p>Die Darstellung der Dienstleistungen auf unserer Website stellt kein verbindliches Angebot dar, sondern eine Aufforderung zur Anfrage.</p>
-          <p>Ein Vertrag kommt erst zustande, wenn der Auftragnehmer die Anfrage des Auftraggebers schriftlich (per E-Mail) best&auml;tigt und der Auftraggeber den genannten Preis akzeptiert.</p>
-        </div>
-      </div>
-
-      <div class="agb-item">
-        <button class="agb-btn" onclick="tog(this,'agb-item')">
-          <span class="agb-para">&sect;&nbsp;3</span>
-          <span class="agb-title">Preise und Zahlung</span>
-          <span class="agb-ico">+</span>
-        </button>
-        <div class="agb-body">
-          <p>Alle angegebenen Preise sind Endpreise inkl. der gesetzlichen Mehrwertsteuer, sofern diese anf&auml;llt. Die Kalkulation setzt sich zusammen aus: Grundpreis, Materialkosten, Maschinenlaufzeit, ggf. Nachbearbeitung und Versand.</p>
-          <p>Zahlungsm&ouml;glichkeiten: Vorkasse (Banküberweisung), PayPal, Barzahlung bei Abholung sowie SEPA-Lastschrift nach Vereinbarung. Bei Auftr&auml;gen über 50 &euro; ist eine Anzahlung von 50&nbsp;% bei Auftragserteilung f&auml;llig.</p>
-        </div>
-      </div>
-
-      <div class="agb-item">
-        <button class="agb-btn" onclick="tog(this,'agb-item')">
-          <span class="agb-para">&sect;&nbsp;4</span>
-          <span class="agb-title">Pflichten und Verantwortung des Auftraggebers</span>
-          <span class="agb-ico">+</span>
-        </button>
-        <div class="agb-body">
-          <p>Der Auftraggeber ist verpflichtet, ausschlie&szlig;lich Dateien einzureichen, f&uuml;r die er die notwendigen Nutzungsrechte besitzt. Er best&auml;tigt, dass der Druck der bereitgestellten Modelle keine Rechte Dritter verletzt.</p>
-          <p>Der Druck von Waffen, Waffenbestandteilen oder sonstigen gesetzlich verbotenen Gegenst&auml;nden ist ausdr&uuml;cklich ausgeschlossen.</p>
-        </div>
-      </div>
-
-      <div class="agb-item">
-        <button class="agb-btn" onclick="tog(this,'agb-item')">
-          <span class="agb-para">&sect;&nbsp;5</span>
-          <span class="agb-title">Lieferung</span>
-          <span class="agb-ico">+</span>
-        </button>
-        <div class="agb-body">
-          <p>Lieferzeiten sind unverbindliche Richtwerte und beginnen nach Auftragsbestätigung und Zahlungseingang. Die Standardlieferzeit betr&auml;gt 5&ndash;10 Werktage.</p>
-          <p>Der Versand erfolgt per DHL (versichertes Paket). Der Versand ist kostenlos ab einem Auftragswert von 50 &euro;. Abholung in Drensteinfurt ist nach Absprache kostenlos m&ouml;glich.</p>
-        </div>
-      </div>
-
-      <div class="agb-item">
-        <button class="agb-btn" onclick="tog(this,'agb-item')">
-          <span class="agb-para">&sect;&nbsp;6</span>
-          <span class="agb-title">Gefahr&uuml;bergang</span>
-          <span class="agb-ico">+</span>
-        </button>
-        <div class="agb-body">
-          <p>Die Gefahr des zuf&auml;lligen Untergangs oder der Verschlechterung der Ware geht mit &Uuml;bergabe an das Versandunternehmen auf den Auftraggeber &uuml;ber. Bei Abholung geht die Gefahr mit der &Uuml;bergabe an den Auftraggeber &uuml;ber.</p>
-        </div>
-      </div>
-
-      <div class="agb-item">
-        <button class="agb-btn" onclick="tog(this,'agb-item')">
-          <span class="agb-para">&sect;&nbsp;7</span>
-          <span class="agb-title">M&auml;ngel und Gew&auml;hrleistung</span>
-          <span class="agb-ico">+</span>
-        </button>
-        <div class="agb-body">
-          <p>M&auml;ngel sind unverz&uuml;glich, sp&auml;testens innerhalb von 7 Tagen nach Erhalt der Ware, schriftlich per E-Mail zu melden. Bitte f&uuml;ge Fotos des Mangels bei.</p>
-          <p>Bei berechtigten M&auml;ngeln bieten wir nach Wahl Nachbesserung, Neuherstellung oder anteilige Erstattung an. Geringe Abweichungen im Erscheinungsbild (Schichtlinien, minimale Ma&szlig;toleranzen) sind FDM-typisch und stellen keinen Mangel dar.</p>
-        </div>
-      </div>
-
-      <div class="agb-item">
-        <button class="agb-btn" onclick="tog(this,'agb-item')">
-          <span class="agb-para">&sect;&nbsp;8</span>
-          <span class="agb-title">Haftungsbeschr&auml;nkung</span>
-          <span class="agb-ico">+</span>
-        </button>
-        <div class="agb-body">
-          <p>MollTonCreative haftet unbeschr&auml;nkt bei Vorsatz oder grober Fahrl&auml;ssigkeit sowie f&uuml;r Sch&auml;den aus der Verletzung des Lebens, des K&ouml;rpers oder der Gesundheit. Im &Uuml;brigen ist die Haftung auf den vorhersehbaren, vertragstypischen Schaden begrenzt.</p>
-        </div>
-      </div>
-
-      <div class="agb-item">
-        <button class="agb-btn" onclick="tog(this,'agb-item')">
-          <span class="agb-para">&sect;&nbsp;9</span>
-          <span class="agb-title">Urheberrecht / Nutzungsrechte</span>
-          <span class="agb-ico">+</span>
-        </button>
-        <div class="agb-body">
-          <p>Der Auftraggeber sichert zu, &uuml;ber alle erforderlichen Rechte an den eingereichten 3D-Dateien zu verf&uuml;gen. MollTonCreative druckt keine Modelle, die erkennbar urheberrechtlich gesch&uuml;tzt sind, ohne entsprechende Lizenz.</p>
-          <p>MollTonCreative beh&auml;lt sich vor, gefertigte Drucke zu Referenzzwecken fotografisch festzuhalten und in sozialen Medien zu ver&ouml;ffentlichen, sofern der Auftraggeber nicht ausdr&uuml;cklich widerspricht.</p>
-        </div>
-      </div>
-
-      <div class="agb-item">
-        <button class="agb-btn" onclick="tog(this,'agb-item')">
-          <span class="agb-para">&sect;&nbsp;10</span>
-          <span class="agb-title">Datenschutz</span>
-          <span class="agb-ico">+</span>
-        </button>
-        <div class="agb-body">
-          <p>Die Verarbeitung personenbezogener Daten des Auftraggebers erfolgt ausschlie&szlig;lich zur Auftragsabwicklung und im Einklang mit der DSGVO. Daten werden nicht an Dritte weitergegeben, au&szlig;er soweit dies zur Vertragserfüllung notwendig ist. Anfragen: info@molltoncreative.de</p>
-        </div>
-      </div>
-
-      <div class="agb-item">
-        <button class="agb-btn" onclick="tog(this,'agb-item')">
-          <span class="agb-para">&sect;&nbsp;11</span>
-          <span class="agb-title">Schlussbestimmungen</span>
-          <span class="agb-ico">+</span>
-        </button>
-        <div class="agb-body">
-          <p>Es gilt das Recht der Bundesrepublik Deutschland. Erf&uuml;llungsort und Gerichtsstand ist Drensteinfurt, sofern der Auftraggeber Kaufmann ist. Sollten einzelne Bestimmungen dieser AGB unwirksam sein, bleibt die Wirksamkeit der &uuml;brigen Bestimmungen unber&uuml;hrt.</p>
-        </div>
-      </div>
-
-    </div>
   </div>
 </div>
 
