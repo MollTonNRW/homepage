@@ -572,12 +572,12 @@ hr { border:none; border-top:1px solid var(--border); margin:0 3rem; }
         </div>
       </div>
     </div>
-    <div class="cform">
-      <div class="fg"><label>Name</label><input type="text" placeholder="Dein Name"></div>
-      <div class="fg"><label>E-Mail</label><input type="email" placeholder="deine@email.de"></div>
+    <form class="cform" id="contact-form" onsubmit="return sendForm(event)">
+      <div class="fg"><label for="cf-name">Name</label><input id="cf-name" name="name" type="text" placeholder="Dein Name" required></div>
+      <div class="fg"><label for="cf-email">E-Mail</label><input id="cf-email" name="email" type="email" placeholder="deine@email.de" required></div>
       <div class="fg">
-        <label>Material</label>
-        <select>
+        <label for="cf-material">Material</label>
+        <select id="cf-material" name="material">
           <option value="">Material w&auml;hlen &hellip;</option>
           <option>PLA</option>
           <option>PETG</option>
@@ -589,9 +589,10 @@ hr { border:none; border-top:1px solid var(--border); margin:0 3rem; }
           <option>Unsicher &ndash; Bitte um Beratung</option>
         </select>
       </div>
-      <div class="fg"><label>Nachricht</label><textarea placeholder="Modell beschreiben oder Link einf&uuml;gen &hellip;"></textarea></div>
-      <button class="btn-outline" onclick="sent(this)">Anfrage senden &rarr;</button>
-    </div>
+      <div class="fg"><label for="cf-msg">Nachricht</label><textarea id="cf-msg" name="message" placeholder="Modell beschreiben oder Link einf&uuml;gen &hellip;" required></textarea></div>
+      <button type="submit" class="btn-outline" id="cf-btn">Anfrage senden &rarr;</button>
+      <p id="cf-status" style="font-size:.78rem;color:var(--muted);margin-top:.5rem;display:none"></p>
+    </form>
   </div>
 </div>
 
@@ -844,12 +845,41 @@ function tog(btn, cls) {
 }
 
 // ── FORM ─────────────────────────────────────────
-function sent(btn) {
-  btn.textContent      = 'Gesendet \u2713';
+// ── CONTACT FORM ─────────────────────────────────
+function sendForm(e) {
+  e.preventDefault();
+  var name    = document.getElementById('cf-name').value.trim();
+  var email   = document.getElementById('cf-email').value.trim();
+  var material= document.getElementById('cf-material').value;
+  var msg     = document.getElementById('cf-msg').value.trim();
+  var btn     = document.getElementById('cf-btn');
+  var status  = document.getElementById('cf-status');
+
+  if (!name || !email || !msg) return false;
+
+  // Build mailto as reliable fallback
+  var subject = encodeURIComponent('3D-Druck Anfrage von ' + name);
+  var body    = encodeURIComponent(
+    'Name: ' + name + '\n' +
+    'E-Mail: ' + email + '\n' +
+    'Material: ' + (material || 'Nicht angegeben') + '\n\n' +
+    msg
+  );
+
+  // Open mail client
+  window.location.href = 'mailto:info@molltoncreative.de?subject=' + subject + '&body=' + body;
+
+  // Visual feedback
+  btn.textContent      = 'E-Mail-Programm ge\u00f6ffnet \u2713';
   btn.style.background = 'rgba(79,195,247,0.12)';
   btn.style.color      = 'var(--accent)';
+  status.style.display = 'block';
+  status.textContent   = 'Dein E-Mail-Programm sollte sich ge\u00f6ffnet haben. Falls nicht: info@molltoncreative.de';
+
   var r = btn.getBoundingClientRect();
   drop(r.left + r.width / 2, r.top + r.height / 2, 80, 18);
+
+  return false;
 }
 </script>
 </body>
