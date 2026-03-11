@@ -590,6 +590,7 @@ hr { border:none; border-top:1px solid var(--border); margin:0 3rem; }
         </select>
       </div>
       <div class="fg"><label for="cf-msg">Nachricht</label><textarea id="cf-msg" name="message" placeholder="Modell beschreiben oder Link einf&uuml;gen &hellip;" required></textarea></div>
+      <div style="position:absolute;left:-9999px" aria-hidden="true"><input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off"></div>
       <button type="submit" class="btn-outline" id="cf-btn">Anfrage senden &rarr;</button>
       <p id="cf-status" style="font-size:.78rem;color:var(--muted);margin-top:.5rem;display:none"></p>
     </form>
@@ -846,38 +847,63 @@ function tog(btn, cls) {
 
 // ── FORM ─────────────────────────────────────────
 // ── CONTACT FORM ─────────────────────────────────
+var WORKER_URL = 'https://mtc-contact.mollton-nrw.workers.dev';
+
 function sendForm(e) {
   e.preventDefault();
-  var name    = document.getElementById('cf-name').value.trim();
-  var email   = document.getElementById('cf-email').value.trim();
-  var material= document.getElementById('cf-material').value;
-  var msg     = document.getElementById('cf-msg').value.trim();
-  var btn     = document.getElementById('cf-btn');
-  var status  = document.getElementById('cf-status');
+  var name     = document.getElementById('cf-name').value.trim();
+  var email    = document.getElementById('cf-email').value.trim();
+  var material = document.getElementById('cf-material').value;
+  var msg      = document.getElementById('cf-msg').value.trim();
+  var website  = document.getElementById('cf-website').value;
+  var btn      = document.getElementById('cf-btn');
+  var status   = document.getElementById('cf-status');
 
   if (!name || !email || !msg) return false;
 
-  // Build mailto as reliable fallback
-  var subject = encodeURIComponent('3D-Druck Anfrage von ' + name);
-  var body    = encodeURIComponent(
-    'Name: ' + name + '\n' +
-    'E-Mail: ' + email + '\n' +
-    'Material: ' + (material || 'Nicht angegeben') + '\n\n' +
-    msg
-  );
+  // Loading state
+  btn.disabled    = true;
+  btn.textContent = 'Wird gesendet \u2026';
+  btn.style.opacity = '0.6';
+  status.style.display = 'none';
 
-  // Open mail client
-  window.location.href = 'mailto:info@molltoncreative.de?subject=' + subject + '&body=' + body;
-
-  // Visual feedback
-  btn.textContent      = 'E-Mail-Programm ge\u00f6ffnet \u2713';
-  btn.style.background = 'rgba(79,195,247,0.12)';
-  btn.style.color      = 'var(--accent)';
-  status.style.display = 'block';
-  status.textContent   = 'Dein E-Mail-Programm sollte sich ge\u00f6ffnet haben. Falls nicht: info@molltoncreative.de';
-
-  var r = btn.getBoundingClientRect();
-  drop(r.left + r.width / 2, r.top + r.height / 2, 80, 18);
+  fetch(WORKER_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: name, email: email, material: material, message: msg, website: website })
+  })
+  .then(function(res) { return res.json().then(function(data) { return { ok: res.ok, data: data }; }); })
+  .then(function(result) {
+    if (result.ok && result.data.ok) {
+      btn.textContent      = 'Gesendet \u2713';
+      btn.style.background = 'rgba(79,195,247,0.12)';
+      btn.style.color      = 'var(--accent)';
+      btn.style.opacity    = '1';
+      status.style.display = 'block';
+      status.style.color   = 'var(--accent)';
+      status.textContent   = result.data.message || 'Anfrage erfolgreich gesendet!';
+      document.getElementById('contact-form').reset();
+      var r = btn.getBoundingClientRect();
+      drop(r.left + r.width / 2, r.top + r.height / 2, 80, 18);
+      setTimeout(function() {
+        btn.textContent = 'Anfrage senden \u2192';
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.disabled = false;
+        status.style.display = 'none';
+      }, 5000);
+    } else {
+      throw new Error(result.data.error || 'Unbekannter Fehler');
+    }
+  })
+  .catch(function(err) {
+    btn.style.opacity = '1';
+    btn.disabled = false;
+    btn.textContent = 'Anfrage senden \u2192';
+    status.style.display = 'block';
+    status.style.color   = 'var(--gold)';
+    status.innerHTML     = err.message + '<br><a href="mailto:info@molltoncreative.de" style="color:var(--accent)">Alternativ per E-Mail senden</a>';
+  });
 
   return false;
 }

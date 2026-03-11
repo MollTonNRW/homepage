@@ -1,0 +1,7 @@
+name = "mtc-contact"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+N8N_WEBHOOK_URL = "https://n8n.molltoncreative.de/webhook/contact-form"
+ALLOWED_ORIGINS = "https://landing.molltoncreative.de,https://www.molltoncreative.de,https://molltoncreative.de"
