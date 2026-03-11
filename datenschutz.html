@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datenschutz | MollTonCreative</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+
+/* RESET */
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; background:#060c14; }
+
+/* VARS */
+:root {
+  --bg:     #060c14;
+  --accent: #4fc3f7;
+  --gold:   #f0c040;
+  --text:   #d4e8f5;
+  --muted:  rgba(180,215,240,0.45);
+  --card:   rgba(8,18,32,0.78);
+  --border: rgba(79,195,247,0.18);
+}
+
+body {
+  font-family:'Barlow',sans-serif;
+  font-weight:400;
+  color:var(--text);
+  background:var(--bg);
+  overflow-x:hidden;
+}
+
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:500;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1rem 3rem;
+  background:rgba(6,12,20,0.88); backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+.logo { display:flex; align-items:center; text-decoration:none; gap:.6rem; }
+.logo img { height:28px; }
+.logo-fb { display:none; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.15rem; color:var(--text); letter-spacing:.04em; }
+.logo-fb span { color:var(--accent); }
+nav ul { list-style:none; display:flex; gap:2rem; }
+nav ul a {
+  font-family:'Barlow Condensed',sans-serif; font-size:.78rem; font-weight:600;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--muted);
+  text-decoration:none; transition:color .2s;
+}
+nav ul a:hover { color:var(--text); }
+.nav-btn {
+  font-family:'DM Mono',monospace; font-size:.68rem; letter-spacing:.15em;
+  color:var(--accent); text-decoration:none; border:1px solid var(--border);
+  padding:.5rem 1.2rem; transition:all .25s;
+}
+.nav-btn:hover { background:var(--accent); color:#060c14; }
+
+/* PAGE */
+.page-content {
+  max-width:900px; margin:0 auto;
+  padding:8rem 3rem 4rem;
+}
+
+/* HEADINGS */
+.label {
+  font-family:'DM Mono',monospace; font-size:.6rem;
+  letter-spacing:.42em; color:var(--accent); text-transform:uppercase; margin-bottom:1rem;
+}
+h1 {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(2rem,4vw,3.5rem);
+  font-weight:800; text-transform:uppercase;
+  color:#eef6fc; line-height:1; margin-bottom:1.4rem;
+}
+h1 em { font-style:normal; color:var(--accent); }
+.intro {
+  font-size:.92rem; font-weight:300; line-height:1.85; color:var(--muted); margin-bottom:3rem;
+  max-width:680px;
+}
+
+/* SECTIONS */
+.ds-section {
+  background:var(--card); backdrop-filter:blur(8px);
+  border:1px solid var(--border);
+  padding:2rem 2.2rem; margin-bottom:1px;
+}
+.ds-section h2 {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:1.1rem; font-weight:700; text-transform:uppercase;
+  letter-spacing:.06em; color:var(--text); margin-bottom:1rem;
+  display:flex; align-items:center; gap:.8rem;
+}
+.ds-section h2 .num {
+  font-family:'DM Mono',monospace; font-size:.62rem;
+  color:var(--accent); letter-spacing:.18em;
+}
+.ds-section p {
+  font-size:.86rem; font-weight:300; line-height:1.85;
+  color:var(--muted); margin-bottom:.65rem;
+}
+.ds-section ul {
+  padding-left:1rem; list-style:none; margin-bottom:.65rem;
+}
+.ds-section ul li {
+  font-size:.86rem; font-weight:300; line-height:1.85; color:var(--muted);
+}
+.ds-section ul li::before { content:'—'; margin-right:.5rem; color:var(--accent); }
+.ds-section strong { color:var(--text); font-weight:500; }
+.ds-section a { color:var(--accent); text-decoration:none; }
+.ds-section a:hover { text-decoration:underline; }
+
+/* FOOTER NOTE */
+.footer-note {
+  margin-top:3rem; padding:1.5rem 1.8rem;
+  background:var(--card); border:1px solid var(--border);
+  font-family:'DM Mono',monospace; font-size:.68rem; line-height:2;
+  color:rgba(180,215,240,0.3); letter-spacing:.04em;
+}
+
+/* BACK LINK */
+.back-link {
+  display:inline-block; margin-top:2rem;
+  font-family:'DM Mono',monospace; font-size:.72rem; letter-spacing:.15em;
+  color:var(--accent); text-decoration:none; border:1px solid var(--border);
+  padding:.6rem 1.4rem; transition:all .25s;
+}
+.back-link:hover { background:var(--accent); color:#060c14; }
+
+/* FOOTER */
+footer {
+  background:rgba(4,8,18,.92);
+  border-top:1px solid var(--border); backdrop-filter:blur(14px); padding:3rem;
+  margin-top:4rem;
+}
+.foot-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:3rem; }
+.foot-logo { height:30px; filter:brightness(.75); display:block; margin-bottom:1rem; }
+.foot-sec h4 { font-family:'Barlow Condensed',sans-serif; font-size:.72rem; letter-spacing:.25em; text-transform:uppercase; color:var(--accent); margin-bottom:.9rem; }
+.foot-sec a, .foot-sec p { font-size:.8rem; font-weight:300; color:var(--muted); text-decoration:none; line-height:2; display:block; transition:color .2s; }
+.foot-sec a:hover { color:var(--text); }
+.foot-bottom { max-width:1200px; margin:1.8rem auto 0; padding-top:1.5rem; border-top:1px solid var(--border); display:flex; justify-content:space-between; }
+.foot-bottom p { font-family:'DM Mono',monospace; font-size:.62rem; letter-spacing:.15em; color:rgba(100,140,180,.3); }
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav { padding:.9rem 1.5rem; }
+  nav ul { display:none; }
+  .page-content { padding:6rem 1.5rem 3rem; }
+  .ds-section { padding:1.5rem; }
+  .foot-grid { grid-template-columns:1fr 1fr; gap:2rem; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">
+    <img src="https://images.squarespace-cdn.com/content/v1/682356df59a3421a3aa2cfc7/34167444-db8d-47af-ab57-8983bf82200e/LogoMTCv2+klein.png?format=1500w"
+         alt="MollTonCreative"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <span class="logo-fb">MollTon<span>Creative</span></span>
+  </a>
+  <ul>
+    <li><a href="index.html#how">Prozess</a></li>
+    <li><a href="index.html#about">&Uuml;ber uns</a></li>
+    <li><a href="index.html#pricing">Preise</a></li>
+    <li><a href="index.html#faq">FAQ</a></li>
+    <li><a href="index.html#contact">Kontakt</a></li>
+    <li><a href="datenschutz.html" style="color:var(--text)">Datenschutz</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-btn">[Anfragen]</a>
+</nav>
+
+<div class="page-content">
+
+  <div class="label">Rechtliches</div>
+  <h1>Datenschutz&shy;<em>erkl&auml;rung</em></h1>
+  <p class="intro">MollTonCreative &ndash; 3D-Druck-Service<br>Inhaber: Frank Moll | Prozessionsweg 22, 48317 Drensteinfurt<br>info@molltoncreative.de | www.molltoncreative.de<br>Stand: M&auml;rz 2026</p>
+
+  <!-- 1 -->
+  <div class="ds-section">
+    <h2><span class="num">01</span> Verantwortlicher</h2>
+    <p>Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) und anderer nationaler Datenschutzgesetze sowie sonstiger datenschutzrechtlicher Bestimmungen ist:</p>
+    <p><strong>Frank Moll | MollTonCreative</strong><br>
+    Prozessionsweg 22, 48317 Drensteinfurt<br>
+    E-Mail: <a href="mailto:info@molltoncreative.de">info@molltoncreative.de</a><br>
+    Website: <a href="index.html">www.molltoncreative.de</a></p>
+  </div>
+
+  <!-- 2 -->
+  <div class="ds-section">
+    <h2><span class="num">02</span> Allgemeines zur Datenverarbeitung</h2>
+    <p>Wir verarbeiten personenbezogene Daten grunds&auml;tzlich nur, soweit dies zur Bereitstellung einer funktionsf&auml;higen Website sowie unserer Inhalte und Leistungen erforderlich ist. Die Verarbeitung personenbezogener Daten erfolgt regelm&auml;&szlig;ig nur nach Einwilligung der betroffenen Person oder wenn die Verarbeitung durch gesetzliche Vorschriften erlaubt ist.</p>
+  </div>
+
+  <!-- 3 -->
+  <div class="ds-section">
+    <h2><span class="num">03</span> Website und Hosting</h2>
+    <p><strong>3.1 Hosting:</strong> Diese Website wird &uuml;ber Cloudflare Pages (Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, USA) gehostet. Beim Aufruf der Website werden automatisch Verbindungsdaten erhoben, darunter IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene URL sowie der verwendete Browser (Server-Logfiles).</p>
+    <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem sicheren und stabilen Betrieb der Website).</p>
+    <p>Speicherdauer: Server-Logfiles werden nach sp&auml;testens 7 Tagen automatisch gel&ouml;scht, sofern sie nicht zur Untersuchung eines Sicherheitsvorfalls ben&ouml;tigt werden.</p>
+    <p>Drittlandtransfer: Cloudflare verarbeitet Daten unter dem EU-US Data Privacy Framework.</p>
+    <p><strong>3.2 Cloudflare als CDN und DDoS-Schutz:</strong> Cloudflare agiert zudem als Content Delivery Network und &uuml;bernimmt Sicherheitsfunktionen (DDoS-Schutz, Web Application Firewall). Dabei k&ouml;nnen Anfragen an unsere Website &uuml;ber Cloudflare-Server geleitet werden. Cloudflare setzt hierf&uuml;r einen notwendigen Cookie (&lsquo;__cflb&rsquo;) zur Lastverteilung ein. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
+  </div>
+
+  <!-- 4 -->
+  <div class="ds-section">
+    <h2><span class="num">04</span> Kontaktaufnahme per E-Mail</h2>
+    <p>Wenn Sie uns per E-Mail kontaktieren, werden die von Ihnen mitgeteilten Daten (Name, E-Mail-Adresse, Nachrichteninhalt) zur Bearbeitung Ihrer Anfrage gespeichert.</p>
+    <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung oder -erf&uuml;llung) bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Beantwortung von Anfragen).</p>
+    <p>Speicherdauer: Die Daten werden gel&ouml;scht, sobald die Anfrage abschlie&szlig;end bearbeitet ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
+  </div>
+
+  <!-- 5 -->
+  <div class="ds-section">
+    <h2><span class="num">05</span> Auftragsabwicklung (3D-Druck-Auftr&auml;ge)</h2>
+    <p>Im Rahmen der Auftragsabwicklung verarbeiten wir folgende personenbezogene Daten:</p>
+    <ul>
+      <li>Name, Lieferadresse, E-Mail-Adresse</li>
+      <li>Telefonnummer (soweit angegeben)</li>
+      <li>Zahlungsdaten (Bankverbindung bei &Uuml;berweisung)</li>
+      <li>Auftragsdaten (Druckdateien, Materialwahl, Kommunikationsverlauf)</li>
+    </ul>
+    <p><strong>Zweck:</strong> Erf&uuml;llung des Vertrags, Lieferung der Ware, Rechnungsstellung, Kundenkommunikation.</p>
+    <p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Vertragserf&uuml;llung) sowie Art. 6 Abs. 1 lit. c DSGVO (steuerrechtliche Aufbewahrungspflichten).</p>
+    <p><strong>Speicherdauer:</strong> Auftrags- und Rechnungsdaten werden entsprechend der steuerrechtlichen Aufbewahrungspflichten f&uuml;r 10 Jahre gespeichert (&sect; 147 AO).</p>
+    <p><strong>Weitergabe an Versanddienstleister:</strong> Zur Lieferung der bestellten Waren &uuml;bermitteln wir Ihren Namen und Ihre Lieferadresse an den beauftragten Versanddienstleister (z.&nbsp;B. DHL, DPD, Hermes). Eine dar&uuml;berhinausgehende Weitergabe erfolgt nicht.</p>
+  </div>
+
+  <!-- 6 -->
+  <div class="ds-section">
+    <h2><span class="num">06</span> Keine Cookies auf dieser Website (au&szlig;er technisch notwendigen)</h2>
+    <p>Wir setzen keine Tracking-Cookies, Analyse-Cookies oder Marketing-Cookies ein. Der von Cloudflare gesetzte technische Cookie (&lsquo;__cflb&rsquo;) dient ausschlie&szlig;lich der Lastverteilung und enth&auml;lt keine personenbezogenen Daten.</p>
+    <p>Es wird kein Website-Analyse-Tool (z.&nbsp;B. Google Analytics, Matomo) eingesetzt. Es werden keine Nutzerprofile erstellt.</p>
+  </div>
+
+  <!-- 7 -->
+  <div class="ds-section">
+    <h2><span class="num">07</span> Keine Weitergabe an Dritte</h2>
+    <p>Eine Weitergabe Ihrer personenbezogenen Daten an Dritte erfolgt ausschlie&szlig;lich:</p>
+    <ul>
+      <li>an Versanddienstleister zur Auftragslieferung (Name und Lieferadresse, siehe Ziffer 5)</li>
+      <li>wenn wir gesetzlich dazu verpflichtet sind (z.&nbsp;B. gegen&uuml;ber Steuer- oder Strafverfolgungsbeh&ouml;rden)</li>
+      <li>wenn Sie ausdr&uuml;cklich eingewilligt haben</li>
+    </ul>
+    <p>Eine Weitergabe zu Werbezwecken oder an sonstige Dritte findet nicht statt.</p>
+  </div>
+
+  <!-- 8 -->
+  <div class="ds-section">
+    <h2><span class="num">08</span> Ihre Rechte als betroffene Person</h2>
+    <p>Sie haben gegen&uuml;ber uns folgende Rechte hinsichtlich Ihrer personenbezogenen Daten:</p>
+    <p><strong>8.1 Auskunftsrecht:</strong> Sie haben das Recht, Auskunft dar&uuml;ber zu verlangen, ob und welche personenbezogenen Daten wir &uuml;ber Sie gespeichert haben (Art. 15 DSGVO).</p>
+    <p><strong>8.2 Berichtigungsrecht:</strong> Sie haben das Recht auf Berichtigung unrichtiger oder unvollst&auml;ndiger Daten (Art. 16 DSGVO).</p>
+    <p><strong>8.3 Recht auf L&ouml;schung:</strong> Sie haben das Recht, die L&ouml;schung Ihrer personenbezogenen Daten zu verlangen, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen (Art. 17 DSGVO).</p>
+    <p><strong>8.4 Recht auf Einschr&auml;nkung der Verarbeitung:</strong> Sie k&ouml;nnen die Einschr&auml;nkung der Verarbeitung Ihrer Daten verlangen, z.&nbsp;B. wenn Sie die Richtigkeit der Daten bestreiten (Art. 18 DSGVO).</p>
+    <p><strong>8.5 Recht auf Daten&uuml;bertragbarkeit:</strong> Sie haben das Recht, Ihre Daten in einem strukturierten, maschinenlesbaren Format zu erhalten (Art. 20 DSGVO).</p>
+    <p><strong>8.6 Widerspruchsrecht:</strong> Sie k&ouml;nnen der Verarbeitung Ihrer Daten auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse) jederzeit widersprechen (Art. 21 DSGVO).</p>
+    <p>Zur Aus&uuml;bung Ihrer Rechte wenden Sie sich bitte an: <a href="mailto:info@molltoncreative.de">info@molltoncreative.de</a></p>
+  </div>
+
+  <!-- 9 -->
+  <div class="ds-section">
+    <h2><span class="num">09</span> Beschwerderecht bei der Aufsichtsbeh&ouml;rde</h2>
+    <p>Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbeh&ouml;rde &uuml;ber die Verarbeitung Ihrer personenbezogenen Daten durch uns zu beschweren.</p>
+    <p><strong>Zust&auml;ndige Aufsichtsbeh&ouml;rde f&uuml;r Nordrhein-Westfalen:</strong><br>
+    Landesbeauftragte f&uuml;r Datenschutz und Informationsfreiheit NRW<br>
+    Postfach 20 04 44, 40102 D&uuml;sseldorf<br>
+    Tel.: 0211 38424-0 | E-Mail: poststelle@ldi.nrw.de | www.ldi.nrw.de</p>
+  </div>
+
+  <!-- 10 -->
+  <div class="ds-section">
+    <h2><span class="num">10</span> Aktualit&auml;t und &Auml;nderung dieser Datenschutzerkl&auml;rung</h2>
+    <p>Diese Datenschutzerkl&auml;rung ist aktuell g&uuml;ltig und hat den Stand M&auml;rz 2026.</p>
+    <p>Durch die Weiterentwicklung unserer Website oder aufgrund ge&auml;nderter gesetzlicher bzw. beh&ouml;rdlicher Vorgaben kann es notwendig werden, diese Datenschutzerkl&auml;rung zu &auml;ndern. Die jeweils aktuelle Datenschutzerkl&auml;rung ist stets unter <a href="datenschutz.html">www.molltoncreative.de/datenschutz</a> abrufbar.</p>
+  </div>
+
+  <div class="footer-note">
+    Stand: M&auml;rz 2026 | MollTonCreative, Frank Moll, Prozessionsweg 22, 48317 Drensteinfurt<br>
+    St.-Nr.: 304/5134/3979 | gem. &sect; 19 UStG &ndash; keine MwSt.<br>
+    www.molltoncreative.de | info@molltoncreative.de
+  </div>
+
+  <a href="index.html" class="back-link">&larr; Zur&uuml;ck zur Startseite</a>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-grid">
+    <div>
+      <img src="https://images.squarespace-cdn.com/content/v1/682356df59a3421a3aa2cfc7/34167444-db8d-47af-ab57-8983bf82200e/LogoMTCv2+klein.png?format=1500w"
+           alt="MollTonCreative" class="foot-logo"
+           onerror="this.style.display='none'">
+      <p style="font-size:.78rem;color:var(--muted);font-weight:300;line-height:1.9">3D-Druck muss nicht<br>kompliziert sein.</p>
+    </div>
+    <div class="foot-sec">
+      <h4>Standort</h4>
+      <p>Prozessionsweg 22</p>
+      <p>48317 Drensteinfurt</p>
+    </div>
+    <div class="foot-sec">
+      <h4>Kontakt</h4>
+      <a href="mailto:info@molltoncreative.de">info@molltoncreative.de</a>
+      <a href="https://paypal.me/MollTonNRW" target="_blank">paypal.me/MollTonNRW</a>
+    </div>
+    <div class="foot-sec">
+      <h4>Info</h4>
+      <a href="index.html#about">&Uuml;ber uns</a>
+      <a href="agb.html">AGB</a>
+      <a href="datenschutz.html" style="color:var(--text)">Datenschutz</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p>&copy; 2025 MollTonCreative &middot; 3D Druck Service M&uuml;nster</p>
+    <p>Ohne Firlefanz.</p>
+  </div>
+</footer>
+
+</body>
+</html>

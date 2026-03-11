@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGB | MollTonCreative</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+
+/* RESET */
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; background:#060c14; }
+
+/* VARS */
+:root {
+  --bg:     #060c14;
+  --accent: #4fc3f7;
+  --gold:   #f0c040;
+  --text:   #d4e8f5;
+  --muted:  rgba(180,215,240,0.45);
+  --card:   rgba(8,18,32,0.78);
+  --border: rgba(79,195,247,0.18);
+}
+
+body {
+  font-family:'Barlow',sans-serif;
+  font-weight:400;
+  color:var(--text);
+  background:var(--bg);
+  overflow-x:hidden;
+}
+
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:500;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1rem 3rem;
+  background:rgba(6,12,20,0.88); backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+.logo { display:flex; align-items:center; text-decoration:none; gap:.6rem; }
+.logo img { height:28px; }
+.logo-fb { display:none; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.15rem; color:var(--text); letter-spacing:.04em; }
+.logo-fb span { color:var(--accent); }
+nav ul { list-style:none; display:flex; gap:2rem; }
+nav ul a {
+  font-family:'Barlow Condensed',sans-serif; font-size:.78rem; font-weight:600;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--muted);
+  text-decoration:none; transition:color .2s;
+}
+nav ul a:hover { color:var(--text); }
+.nav-btn {
+  font-family:'DM Mono',monospace; font-size:.68rem; letter-spacing:.15em;
+  color:var(--accent); text-decoration:none; border:1px solid var(--border);
+  padding:.5rem 1.2rem; transition:all .25s;
+}
+.nav-btn:hover { background:var(--accent); color:#060c14; }
+
+/* PAGE */
+.page-content {
+  max-width:900px; margin:0 auto;
+  padding:8rem 3rem 4rem;
+}
+
+/* HEADINGS */
+.label {
+  font-family:'DM Mono',monospace; font-size:.6rem;
+  letter-spacing:.42em; color:var(--accent); text-transform:uppercase; margin-bottom:1rem;
+}
+h1 {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(2rem,4vw,3.5rem);
+  font-weight:800; text-transform:uppercase;
+  color:#eef6fc; line-height:1; margin-bottom:1.4rem;
+}
+h1 em { font-style:normal; color:var(--accent); }
+.intro {
+  font-size:.92rem; font-weight:300; line-height:1.85; color:var(--muted); margin-bottom:3rem;
+  max-width:680px;
+}
+
+/* AGB SECTIONS */
+.agb-list { display:flex; flex-direction:column; gap:1px; background:var(--border); }
+.agb-item { background:var(--card); backdrop-filter:blur(8px); overflow:hidden; }
+.agb-btn {
+  width:100%; background:none; border:none;
+  padding:1.1rem 1.8rem; display:flex; align-items:center; gap:1rem;
+  text-align:left; transition:background .2s; cursor:pointer;
+}
+.agb-btn:hover { background:rgba(79,195,247,.05); }
+.agb-para {
+  font-family:'DM Mono',monospace; font-size:.62rem;
+  color:var(--accent); letter-spacing:.18em; flex-shrink:0; width:36px;
+}
+.agb-title {
+  font-family:'Barlow Condensed',sans-serif; font-size:1rem;
+  font-weight:600; text-transform:uppercase; letter-spacing:.06em;
+  color:var(--text); flex:1;
+}
+.agb-ico { font-size:1.3rem; color:var(--muted); transition:transform .3s, color .2s; flex-shrink:0; }
+.agb-item.open .agb-ico { transform:rotate(45deg); color:var(--accent); }
+.agb-body { max-height:0; overflow:hidden; transition:max-height .4s ease, padding .3s; padding:0 1.8rem; }
+.agb-item.open .agb-body { max-height:1200px; padding:0 1.8rem 1.4rem; }
+.agb-body p, .agb-body li {
+  font-size:.86rem; font-weight:300; line-height:1.85;
+  color:var(--muted); margin-bottom:.65rem;
+}
+.agb-body ul { padding-left:1rem; list-style:none; margin-bottom:.65rem; }
+.agb-body ul li::before { content:'—'; margin-right:.5rem; color:var(--accent); }
+.agb-body strong { color:var(--text); font-weight:500; }
+.agb-body a { color:var(--accent); text-decoration:none; }
+.agb-body a:hover { text-decoration:underline; }
+
+/* FOOTER NOTE */
+.footer-note {
+  margin-top:3rem; padding:1.5rem 1.8rem;
+  background:var(--card); border:1px solid var(--border);
+  font-family:'DM Mono',monospace; font-size:.68rem; line-height:2;
+  color:rgba(180,215,240,0.3); letter-spacing:.04em;
+}
+
+/* BACK LINK */
+.back-link {
+  display:inline-block; margin-top:2rem;
+  font-family:'DM Mono',monospace; font-size:.72rem; letter-spacing:.15em;
+  color:var(--accent); text-decoration:none; border:1px solid var(--border);
+  padding:.6rem 1.4rem; transition:all .25s;
+}
+.back-link:hover { background:var(--accent); color:#060c14; }
+
+/* FOOTER */
+footer {
+  background:rgba(4,8,18,.92);
+  border-top:1px solid var(--border); backdrop-filter:blur(14px); padding:3rem;
+  margin-top:4rem;
+}
+.foot-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:3rem; }
+.foot-logo { height:30px; filter:brightness(.75); display:block; margin-bottom:1rem; }
+.foot-sec h4 { font-family:'Barlow Condensed',sans-serif; font-size:.72rem; letter-spacing:.25em; text-transform:uppercase; color:var(--accent); margin-bottom:.9rem; }
+.foot-sec a, .foot-sec p { font-size:.8rem; font-weight:300; color:var(--muted); text-decoration:none; line-height:2; display:block; transition:color .2s; }
+.foot-sec a:hover { color:var(--text); }
+.foot-bottom { max-width:1200px; margin:1.8rem auto 0; padding-top:1.5rem; border-top:1px solid var(--border); display:flex; justify-content:space-between; }
+.foot-bottom p { font-family:'DM Mono',monospace; font-size:.62rem; letter-spacing:.15em; color:rgba(100,140,180,.3); }
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav { padding:.9rem 1.5rem; }
+  nav ul { display:none; }
+  .page-content { padding:6rem 1.5rem 3rem; }
+  .foot-grid { grid-template-columns:1fr 1fr; gap:2rem; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">
+    <img src="https://images.squarespace-cdn.com/content/v1/682356df59a3421a3aa2cfc7/34167444-db8d-47af-ab57-8983bf82200e/LogoMTCv2+klein.png?format=1500w"
+         alt="MollTonCreative"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <span class="logo-fb">MollTon<span>Creative</span></span>
+  </a>
+  <ul>
+    <li><a href="index.html#how">Prozess</a></li>
+    <li><a href="index.html#about">&Uuml;ber uns</a></li>
+    <li><a href="index.html#pricing">Preise</a></li>
+    <li><a href="index.html#faq">FAQ</a></li>
+    <li><a href="index.html#contact">Kontakt</a></li>
+    <li><a href="agb.html" style="color:var(--text)">AGB</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-btn">[Anfragen]</a>
+</nav>
+
+<div class="page-content">
+
+  <div class="label">Rechtliches</div>
+  <h1>Allgemeine <em>Gesch&auml;fts&shy;bedingungen</em></h1>
+  <p class="intro">MollTonCreative &ndash; 3D-Druck &amp; 3D-Scan-Service<br>Inhaber: Frank Moll | Prozessionsweg 22, 48317 Drensteinfurt<br>info@molltoncreative.de | www.molltoncreative.de<br>Stand: M&auml;rz 2026 (Version 4)</p>
+
+  <div class="agb-list">
+
+    <!-- §1 -->
+    <div class="agb-item">
+      <button class="agb-btn" onclick="tog(this)">
+        <span class="agb-para">&sect;&nbsp;1</span>
+        <span class="agb-title">Geltungsbereich</span>
+        <span class="agb-ico">+</span>
+      </button>
+      <div class="agb-body">
+        <p>Diese Allgemeinen Gesch&auml;ftsbedingungen (nachfolgend &bdquo;AGB&ldquo;) gelten f&uuml;r alle Auftr&auml;ge und Vertr&auml;ge zwischen MollTonCreative (nachfolgend &bdquo;Auftragnehmer&ldquo;) und dem Auftraggeber &uuml;ber 3D-Druck- und 3D-Scan-Dienstleistungen.</p>
+        <p>Abweichende oder erg&auml;nzende Bedingungen des Auftraggebers haben keine G&uuml;ltigkeit, es sei denn, der Auftragnehmer stimmt ihrer Geltung ausdr&uuml;cklich schriftlich zu.</p>
+        <p>Diese AGB gelten sowohl gegen&uuml;ber Verbrauchern (&sect; 13 BGB) als auch gegen&uuml;ber Unternehmern (&sect; 14 BGB). Soweit Regelungen nur f&uuml;r einen der beiden Kundenkreise gelten, wird dies ausdr&uuml;cklich angegeben.</p>
+        <p>Die jeweils aktuellen AGB sind abrufbar unter: <a href="agb.html">www.molltoncreative.de/agb</a></p>
+      </div>
+    </div>
+
+    <!-- §2 -->
+    <div class="agb-item">
+      <button class="agb-btn" onclick="tog(this)">
+        <span class="agb-para">&sect;&nbsp;2</span>
+        <span class="agb-title">Vertragsschluss</span>
+        <span class="agb-ico">+</span>
+      </button>
+      <div class="agb-body">
+        <p>Ein Auftrag kommt zustande, wenn der Auftraggeber ein Angebot per E-Mail, &uuml;ber die Website molltoncreative.de, &uuml;ber Kleinanzeigen.de oder einen anderen vereinbarten Kanal &uuml;bersendet und der Auftragnehmer dieses schriftlich (auch per E-Mail) best&auml;tigt.</p>
+        <p>Mit der &Uuml;bersendung eines Auftrags erkennt der Auftraggeber diese AGB als verbindlich an. Die AGB sind vor Vertragsschluss unter <a href="agb.html">www.molltoncreative.de/agb</a> zug&auml;nglich.</p>
+        <p>Angebote des Auftragnehmers sind freibleibend und unverbindlich, solange keine schriftliche Auftragsbest&auml;tigung vorliegt.</p>
+      </div>
+    </div>
+
+    <!-- §3 -->
+    <div class="agb-item">
+      <button class="agb-btn" onclick="tog(this)">
+        <span class="agb-para">&sect;&nbsp;3</span>
+        <span class="agb-title">Leistungsumfang</span>
+        <span class="agb-ico">+</span>
+      </button>
+      <div class="agb-body">
+        <p>MollTonCreative erbringt folgende Dienstleistungen, jeweils nach individueller Vereinbarung:</p>
+        <p><strong>3.1 Lohndruck:</strong> Verarbeitung von durch den Auftraggeber bereitgestellten 3D-Druckdateien (z.&nbsp;B. STL, OBJ, 3MF) in den angebotenen Materialien und Farben, einschlie&szlig;lich grundlegender Nachbearbeitung (St&uuml;tzstrukturen entfernen, sofern nicht anders vereinbart) sowie Verpackung und Versand oder &Uuml;bergabe nach Vereinbarung.</p>
+        <p><strong>3.2 Konstruktionsauftrag:</strong> Erstellung einer druckfertigen 3D-Datei auf Basis der vom Auftraggeber &uuml;bermittelten Spezifikationen (Ma&szlig;e, Funktion, Anforderungen), wahlweise mit anschlie&szlig;endem Druck.</p>
+        <p><strong>3.3 3D-Scan-Service:</strong> Digitalisierung von physischen Objekten mittels 3D-Scanner. Der Leistungsumfang wird im Angebot definiert und kann umfassen:</p>
+        <ul>
+          <li>Lieferung der Rohdatei (STL/OBJ)</li>
+          <li>Nachbearbeitung und Optimierung der Scandatei f&uuml;r den 3D-Druck (druckfertige Ausgabe)</li>
+          <li>Kombination aus Scan und anschlie&szlig;endem Druck</li>
+          <li>Reverse Engineering (konstruktive Aufbereitung des Scans als bearbeitbare Datei)</li>
+        </ul>
+        <p>Die Scan-Qualit&auml;t h&auml;ngt von der Beschaffenheit des Objekts ab (Gr&ouml;&szlig;e, Oberfl&auml;che, Transparenz, Reflexion). Hierauf wird der Auftraggeber im Angebot hingewiesen.</p>
+        <p><strong>3.4 &Uuml;bergabe des Scanobjekts:</strong> Das zu scannende Objekt wird vom Auftraggeber &uuml;berbracht oder versendet, sofern im Angebot keine andere Vereinbarung (z.&nbsp;B. Vor-Ort-Termin beim Auftraggeber) getroffen wurde.</p>
+        <p>Sonderleistungen wie Oberfl&auml;chenbearbeitung, Bemalen oder Montage sind separat zu vereinbaren und zu verg&uuml;ten.</p>
+        <p>Die Abrechnung des Materialverbrauchs beim Druck erfolgt in 50&nbsp;g-Schritten, Mindestabnahme 100&nbsp;g. Scan- und Konstruktionsleistungen werden nach Zeitaufwand berechnet.</p>
+      </div>
+    </div>
+
+    <!-- §4 -->
+    <div class="agb-item">
+      <button class="agb-btn" onclick="tog(this)">
+        <span class="agb-para">&sect;&nbsp;4</span>
+        <span class="agb-title">Pflichten und Verantwortung des Auftraggebers</span>
+        <span class="agb-ico">+</span>
+      </button>
+      <div class="agb-body">
+        <p><strong>4.1 Dateiqualit&auml;t (Lohndruck):</strong> Bei Lohndruckauftr&auml;gen ist der Auftraggeber allein verantwortlich f&uuml;r die Richtigkeit, Druckbarkeit, Vollst&auml;ndigkeit und technische Eignung der &uuml;bermittelten Druckdateien. Der Auftragnehmer ist nicht verpflichtet, fremde Dateien auf konstruktive Fehler zu pr&uuml;fen.</p>
+        <p><strong>4.2 Dateiqualit&auml;t (Konstruktionsauftrag):</strong> Fertigt der Auftragnehmer die 3D-Datei auf Basis der vom Auftraggeber &uuml;bermittelten Spezifikationen, tr&auml;gt der Auftragnehmer die Verantwortung f&uuml;r die konstruktive Umsetzung dieser vereinbarten Spezifikationen. Der Auftraggeber ist verantwortlich f&uuml;r die Vollst&auml;ndigkeit und Richtigkeit seiner Angaben.</p>
+        <p><strong>4.3 Scanobjekte:</strong> Der Auftraggeber ist verantwortlich daf&uuml;r, dass das zur Digitalisierung &uuml;bergebene Objekt frei von Rechten Dritter ist oder er &uuml;ber die notwendigen Nutzungsrechte verf&uuml;gt. Der Auftragnehmer haftet nicht f&uuml;r Sch&auml;den am Scanobjekt, die nicht auf grober Fahrl&auml;ssigkeit oder Vorsatz beruhen. Wertvolle oder empfindliche Objekte sind vor &Uuml;bergabe ausdr&uuml;cklich als solche zu kennzeichnen.</p>
+        <p><strong>4.4 Rechtliche Verantwortung:</strong> Der Auftraggeber versichert, dass er &uuml;ber alle notwendigen Rechte an den &uuml;bermittelten Dateien und Objekten verf&uuml;gt (insbesondere Urheberrechte, Patente, Markenrechte) und dass Druck, Scan oder Konstruktion keine Rechte Dritter verletzt.</p>
+        <p><strong>4.5 Haftungsfreistellung:</strong> Der Auftraggeber stellt den Auftragnehmer von allen Anspr&uuml;chen Dritter frei, die aus der Verletzung von Schutzrechten, aus fehlerhaften Angaben des Auftraggebers oder aus der bestimmungswidrigen Verwendung der gedruckten oder gescannten Objekte entstehen.</p>
+        <p><strong>4.6 Verbotene Verwendungszwecke:</strong> Der Druck oder Scan von Waffen oder Waffenteilen ist generell und ohne Ausnahme untersagt. Gleiches gilt f&uuml;r sicherheitskritische Bauteile (z.&nbsp;B. f&uuml;r Fahrzeuge oder medizinische Anwendungen), sofern nicht vorher eine ausdr&uuml;ckliche schriftliche Vereinbarung &uuml;ber den Verwendungszweck getroffen wurde.</p>
+      </div>
+    </div>
+
+    <!-- §5 -->
+    <div class="agb-item">
+      <button class="agb-btn" onclick="tog(this)">
+        <span class="agb-para">&sect;&nbsp;5</span>
+        <span class="agb-title">Preise und Zahlung</span>
+        <span class="agb-ico">+</span>
+      </button>
+      <div class="agb-body">
+        <p>Die Preise werden individuell nach Aufwand, Materialverbrauch, Druckzeit sowie Scan- und Konstruktionsaufwand kalkuliert und vor Auftragsbest&auml;tigung mitgeteilt. Konstruktions- und Scanleistungen werden nach Zeitaufwand berechnet und separat ausgewiesen.</p>
+        <p>Alle Preise verstehen sich als Endpreise in Euro. MollTonCreative ist Kleinunternehmer im Sinne des &sect; 19 UStG; es wird daher keine Umsatzsteuer berechnet und ausgewiesen.</p>
+        <p>Die Zahlung erfolgt nach Vereinbarung, in der Regel per Vorkasse (Bank&uuml;berweisung) oder nach Abholung in bar. Bei gr&ouml;&szlig;eren Auftr&auml;gen (ab 100&nbsp;EUR) kann eine Anzahlung von bis zu 50&nbsp;% des Auftragswertes verlangt werden.</p>
+        <p>Bei Zahlungsverzug ist der Auftragnehmer berechtigt, Verzugszinsen in gesetzlicher H&ouml;he zu berechnen (gegen&uuml;ber Verbrauchern: 5 Prozentpunkte &uuml;ber dem Basiszinssatz; gegen&uuml;ber Unternehmern: 9 Prozentpunkte &uuml;ber dem Basiszinssatz).</p>
+      </div>
+    </div>
+
+    <!-- §6 -->
+    <div class="agb-item">
+      <button class="agb-btn" onclick="tog(this)">
+        <span class="agb-para">&sect;&nbsp;6</span>
+        <span class="agb-title">Fehldrucke, Scanqualit&auml;t und Risikoverteilung</span>
+        <span class="agb-ico">+</span>
+      </button>
+      <div class="agb-body">
+        <p><strong>6.1 Technisch bedingte Fehldrucke:</strong> Fehldrucke, die auf einem technischen Versagen des Druckers oder auf einem Fehler des Auftragnehmers beruhen, werden dem Auftraggeber nicht gesondert in Rechnung gestellt. Der Auftragnehmer tr&auml;gt in diesen F&auml;llen den Materialverlust.</p>
+        <p><strong>6.2 Dateibedingte Fehldrucke (Lohndruck):</strong> Fehldrucke, die auf M&auml;ngeln der vom Auftraggeber gelieferten Druckdaten beruhen &ndash; insbesondere fehlerhafte Geometrien, nicht manifolde Netze oder undruckbare Strukturen &ndash; werden als eigenst&auml;ndiger Druckauftrag zum regul&auml;ren Preis berechnet. Der Auftraggeber wird auf dieses Risiko im Angebot ausdr&uuml;cklich hingewiesen und stimmt dieser Regelung mit Auftragserteilung zu.</p>
+        <p><strong>6.3 Keine Erfolgsgarantie bei extremen Geometrien:</strong> Bei besonders anspruchsvollen Druckgeometrien (starke &Uuml;berh&auml;nge, sehr feine Details, d&uuml;nne Wandst&auml;rken unter 0,8&nbsp;mm) kann der Auftragnehmer keinen Druckerfolg garantieren. Hierauf wird der Auftraggeber im Angebot hingewiesen.</p>
+        <p><strong>6.4 Scanqualit&auml;t:</strong> Die erzielbare Scanqualit&auml;t h&auml;ngt von der Beschaffenheit des Objekts ab. Transparente, hochgl&auml;nzende, sehr dunkle oder sehr kleine Objekte k&ouml;nnen die Scanqualit&auml;t beeintr&auml;chtigen. Der Auftragnehmer weist im Angebot auf absehbare Einschr&auml;nkungen hin, kann jedoch keine Garantie f&uuml;r eine bestimmte Ausgabequalit&auml;t &uuml;bernehmen, sofern die Objekteigenschaften diese limitieren.</p>
+      </div>
+    </div>
+
+    <!-- §7 -->
+    <div class="agb-item">
+      <button class="agb-btn" onclick="tog(this)">
+        <span class="agb-para">&sect;&nbsp;7</span>
+        <span class="agb-title">R&uuml;ckgabe des Scanobjekts</span>
+        <span class="agb-ico">+</span>
+      </button>
+      <div class="agb-body">
+        <p>Das &uuml;bergebene Scanobjekt wird nach Abschluss des Auftrags zur&uuml;ckgegeben oder &ndash; nach Vereinbarung &ndash; zur&uuml;ckgesendet. R&uuml;ckversandkosten tr&auml;gt der Auftraggeber, sofern nicht anders vereinbart.</p>
+        <p>Der Auftragnehmer verwahrt das Scanobjekt nur f&uuml;r die Dauer der Auftragsabwicklung. Eine l&auml;ngere Verwahrung bedarf einer gesonderten Vereinbarung.</p>
+      </div>
+    </div>
+
+    <!-- §8 -->
+    <div class="agb-item">
+      <button class="agb-btn" onclick="tog(this)">
+        <span class="agb-para">&sect;&nbsp;8</span>
+        <span class="agb-title">Lieferung und Versand</span>
+        <span class="agb-ico">+</span>
+      </button>
+      <div class="agb-body">
+        <p>Die Versandkosten werden im Angebot separat ausgewiesen und sind vom Auftraggeber zu tragen, sofern keine andere Vereinbarung getroffen wurde.</p>
+        <p><strong>8.1 Versandrisiko gegen&uuml;ber Verbrauchern:</strong> Gegen&uuml;ber Verbrauchern (&sect; 13 BGB) tr&auml;gt der Auftragnehmer das Versandrisiko bis zur &Uuml;bergabe der Ware an den Verbraucher.</p>
+        <p><strong>8.2 Versandrisiko gegen&uuml;ber Unternehmern:</strong> Gegen&uuml;ber Unternehmern (&sect; 14 BGB) geht die Gefahr mit &Uuml;bergabe der Ware an den Versanddienstleister auf den Auftraggeber &uuml;ber.</p>
+      </div>
+    </div>
+
+    <!-- §9 -->
+    <div class="agb-item">
+      <button class="agb-btn" onclick="tog(this)">
+        <span class="agb-para">&sect;&nbsp;9</span>
+        <span class="agb-title">Haftung</span>
+        <span class="agb-ico">+</span>
+      </button>
+      <div class="agb-body">
+        <p>Der Auftragnehmer haftet unbeschr&auml;nkt f&uuml;r Sch&auml;den aus der Verletzung des Lebens, des K&ouml;rpers oder der Gesundheit sowie f&uuml;r Sch&auml;den, die auf Vorsatz oder grober Fahrl&auml;ssigkeit beruhen.</p>
+        <p>F&uuml;r leicht fahrl&auml;ssig verursachte Sch&auml;den haftet der Auftragnehmer nur bei Verletzung wesentlicher Vertragspflichten (Kardinalpflichten) und nur in H&ouml;he des vorhersehbaren, vertragstypischen Schadens.</p>
+        <p>Im &Uuml;brigen ist die Haftung auf den Auftragswert der jeweiligen Bestellung beschr&auml;nkt, soweit gesetzlich zul&auml;ssig.</p>
+        <p>F&uuml;r Sch&auml;den am Scanobjekt haftet der Auftragnehmer nur bei grober Fahrl&auml;ssigkeit oder Vorsatz. Wertvolle Objekte sind vor &Uuml;bergabe ausdr&uuml;cklich als solche zu deklarieren.</p>
+      </div>
+    </div>
+
+    <!-- §10 -->
+    <div class="agb-item">
+      <button class="agb-btn" onclick="tog(this)">
+        <span class="agb-para">&sect;&nbsp;10</span>
+        <span class="agb-title">Gew&auml;hrleistung</span>
+        <span class="agb-ico">+</span>
+      </button>
+      <div class="agb-body">
+        <p>Der Auftragnehmer gew&auml;hrleistet, dass die erbrachten Leistungen den vereinbarten Spezifikationen entsprechen (beim Druck: Material, Farbe, Abmessungen im Rahmen drucktypischer Toleranzen von &plusmn;0,3&nbsp;mm oder &plusmn;0,5&nbsp;%; beim Scan: vereinbarte Ausgabeformate und Qualit&auml;tsstufe).</p>
+        <p><strong>10.1 Gegen&uuml;ber Unternehmern:</strong> Offensichtliche M&auml;ngel sind innerhalb von 14 Tagen nach Erhalt schriftlich zu r&uuml;gen.</p>
+        <p><strong>10.2 Gegen&uuml;ber Verbrauchern:</strong> Es gelten die gesetzlichen Gew&auml;hrleistungsrechte. Die Verj&auml;hrungsfrist betr&auml;gt zwei Jahre ab Ablieferung. Das Recht zur Nacherf&uuml;llung bleibt vorbehalten.</p>
+      </div>
+    </div>
+
+    <!-- §11 -->
+    <div class="agb-item">
+      <button class="agb-btn" onclick="tog(this)">
+        <span class="agb-para">&sect;&nbsp;11</span>
+        <span class="agb-title">Widerrufsrecht</span>
+        <span class="agb-ico">+</span>
+      </button>
+      <div class="agb-body">
+        <p>Da s&auml;mtliche Leistungen bei MollTonCreative ausschlie&szlig;lich nach individuellen Kundenvorgaben erbracht werden, sind diese vom Widerrufsrecht ausgenommen (&sect; 312g Abs. 2 Nr. 1 BGB). Der Auftraggeber wird vor Auftragsbest&auml;tigung ausdr&uuml;cklich auf den Ausschluss des Widerrufsrechts hingewiesen.</p>
+      </div>
+    </div>
+
+    <!-- §12 -->
+    <div class="agb-item">
+      <button class="agb-btn" onclick="tog(this)">
+        <span class="agb-para">&sect;&nbsp;12</span>
+        <span class="agb-title">Datenschutz</span>
+        <span class="agb-ico">+</span>
+      </button>
+      <div class="agb-body">
+        <p>Die im Rahmen der Auftragsabwicklung erhobenen personenbezogenen Daten werden gem&auml;&szlig; DSGVO und BDSG verarbeitet. Die vollst&auml;ndige Datenschutzerkl&auml;rung ist abrufbar unter: <a href="datenschutz.html">www.molltoncreative.de/datenschutz</a></p>
+        <p>Verantwortlicher im Sinne der DSGVO: Frank Moll, Prozessionsweg 22, 48317 Drensteinfurt, <a href="mailto:info@molltoncreative.de">info@molltoncreative.de</a></p>
+      </div>
+    </div>
+
+    <!-- §13 -->
+    <div class="agb-item">
+      <button class="agb-btn" onclick="tog(this)">
+        <span class="agb-para">&sect;&nbsp;13</span>
+        <span class="agb-title">Schlussbestimmungen</span>
+        <span class="agb-ico">+</span>
+      </button>
+      <div class="agb-body">
+        <p><strong>13.1 Anwendbares Recht:</strong> Es gilt das Recht der Bundesrepublik Deutschland.</p>
+        <p><strong>13.2 Gerichtsstand:</strong> Gegen&uuml;ber Unternehmern (&sect; 14 BGB) ist Erf&uuml;llungsort und ausschlie&szlig;licher Gerichtsstand Drensteinfurt. Gegen&uuml;ber Verbrauchern (&sect; 13 BGB) gilt der gesetzliche Gerichtsstand am Wohnsitz des Verbrauchers.</p>
+        <p><strong>13.3 Salvatorische Klausel:</strong> Sollten einzelne Bestimmungen dieser AGB unwirksam sein, bleibt die Wirksamkeit der &uuml;brigen Bestimmungen unber&uuml;hrt.</p>
+        <p><strong>13.4 G&uuml;ltigkeit:</strong> Es gilt jeweils die zum Zeitpunkt der Auftragserteilung g&uuml;ltige Fassung der AGB, abrufbar unter <a href="agb.html">www.molltoncreative.de/agb</a>.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-note">
+    Stand: M&auml;rz 2026 | MollTonCreative, Frank Moll, Prozessionsweg 22, 48317 Drensteinfurt<br>
+    St.-Nr.: 304/5134/3979 | gem. &sect; 19 UStG &ndash; keine MwSt. | IBAN: DE61 2004 1133 0790 7959 00 | BIC: COBADEHD001<br>
+    www.molltoncreative.de | info@molltoncreative.de
+  </div>
+
+  <a href="index.html" class="back-link">&larr; Zur&uuml;ck zur Startseite</a>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-grid">
+    <div>
+      <img src="https://images.squarespace-cdn.com/content/v1/682356df59a3421a3aa2cfc7/34167444-db8d-47af-ab57-8983bf82200e/LogoMTCv2+klein.png?format=1500w"
+           alt="MollTonCreative" class="foot-logo"
+           onerror="this.style.display='none'">
+      <p style="font-size:.78rem;color:var(--muted);font-weight:300;line-height:1.9">3D-Druck muss nicht<br>kompliziert sein.</p>
+    </div>
+    <div class="foot-sec">
+      <h4>Standort</h4>
+      <p>Prozessionsweg 22</p>
+      <p>48317 Drensteinfurt</p>
+    </div>
+    <div class="foot-sec">
+      <h4>Kontakt</h4>
+      <a href="mailto:info@molltoncreative.de">info@molltoncreative.de</a>
+      <a href="https://paypal.me/MollTonNRW" target="_blank">paypal.me/MollTonNRW</a>
+    </div>
+    <div class="foot-sec">
+      <h4>Info</h4>
+      <a href="index.html#about">&Uuml;ber uns</a>
+      <a href="agb.html" style="color:var(--text)">AGB</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p>&copy; 2025 MollTonCreative &middot; 3D Druck Service M&uuml;nster</p>
+    <p>Ohne Firlefanz.</p>
+  </div>
+</footer>
+
+<script>
+function tog(btn) {
+  var item = btn.parentElement;
+  var open = item.classList.contains('open');
+  var all  = item.parentElement.querySelectorAll('.agb-item');
+  all.forEach(function(s) { s.classList.remove('open'); });
+  if (!open) item.classList.add('open');
+}
+</script>
+</body>
+</html>
